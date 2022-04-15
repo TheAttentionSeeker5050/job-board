@@ -132,6 +132,10 @@ venv.bak/
 .jpg
 .jpeg
 .png
+.pdf
+.rtf
+.docx
+.doc
 
 # Spyder project settings
 .spyderproject
