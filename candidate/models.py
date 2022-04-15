@@ -1,5 +1,6 @@
 # from asyncio.windows_events import NULL
 from email.policy import default
+# from tkinter import CASCADE
 from django.db import models
 
 # the json decoders and encoders
@@ -30,3 +31,18 @@ class Candidate(models.Model):
         "institution": ""
     })
 
+
+CV_CAT_CHOICES = [
+    ("CV", "CV"),
+    ("COVER_LETTER", "Cover letter")
+]
+
+class CVUpload(models.Model):
+
+
+    candidate = models.ForeignKey(Candidate, models.SET_NULL, null=True)
+    file_category = models.CharField(max_length=25, 
+    choices=CV_CAT_CHOICES,
+    default="CV")
+    file = models.FileField(upload_to="media/uploads/")
+    # file = models.FileField(upload_to="media/uploads/{}/".format(candidate.pk))

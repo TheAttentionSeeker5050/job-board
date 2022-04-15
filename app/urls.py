@@ -13,11 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+# import external libs
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
 import app.views as default_views
 
+# the media url imports
+from django.conf import settings
+from django.conf.urls.static import static
+
+
+# import the views
 from candidate.views import CandidateCustomView
 from company.views import CompanyViewset
 
@@ -32,4 +40,4 @@ urlpatterns = [
     path('api/', include(router.urls)),
     # path("api/candidates/<int:pk>/", CandidateCustomView.as_view())
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

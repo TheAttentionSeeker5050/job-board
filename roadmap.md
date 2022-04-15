@@ -17,7 +17,9 @@ Still on the making
 - Fixing
 - Add a candidate file uploads model
 - Add a company model and django app functionality
-- 
+- Add user authentication classes
+- Add separate api viewsets for uploading files, changing password and checking file uploaded per candidate
+- Add permission classes
 
 ## Stuff I need to fix
 
