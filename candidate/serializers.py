@@ -1,9 +1,10 @@
 # from tkinter.ttk import Style
+from email.policy import default
 from unittest.util import _MAX_LENGTH
 
 # import model and serializer
 from rest_framework import serializers
-from candidate.models import Candidate
+from candidate.models import Candidate, CVUpload, CV_CAT_CHOICES
 
 # import validation tools
 from django.contrib.auth.hashers import make_password
@@ -32,7 +33,7 @@ class CreateCandidateProfileSerializer(serializers.ModelSerializer):
         )
     password = serializers.CharField(
         write_only = True,
-        required = True,
+        required = False,
         style = {"input_type": "password", "placeholder": "Password"}
     )
 
@@ -45,11 +46,30 @@ class CreateCandidateProfileSerializer(serializers.ModelSerializer):
 
 
     def update(self, instance, validated_data):
-        candidate = super().update(instance, validated_data)
-        try:
-            candidate.set_password(validated_data["password"])
-            candidate.save()
-        except KeyError:
-            pass
+        fields = ["email", "username", "first_names", "last_name"]
+        data = {f: validated_data.get(f) for f in fields}
+        candidate = super().update(instance, data)
+        candidate.save()
         return candidate
+
+
+
+
+
+
+
+class FileUploadSerializer(serializers.Serializer):
+    # model = CVUpload
+    # fields = ["pk", "candidate", "file_category", "file"]
+    pk = serializers.IntegerField(read_only=True)
+    candidate = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    file_category = serializers.ChoiceField(choices=CV_CAT_CHOICES, default= "CV")
+    file = serializers.FileField(use_url=True)
+        # "media/uploads/", recursive=True)
+
+    def create(self, validated_data):
+        """
+            Create and return a new file upload instance
+        """
+        return CVUpload.objects.create(**validated_data)
 

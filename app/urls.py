@@ -26,7 +26,7 @@ from django.conf.urls.static import static
 
 
 # import the views
-from candidate.views import CandidateCustomView
+from candidate.views import CandidateCustomView, FileUploadView, FileDetailView
 from company.views import CompanyViewset
 
 router = routers.DefaultRouter()
@@ -38,6 +38,9 @@ router.register(r'company', CompanyViewset, basename="company")
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/candidate-uploads/', FileUploadView.as_view()),
+    path('api/candidate-details/<int:pk>/', FileDetailView.as_view()),
+
     # path("api/candidates/<int:pk>/", CandidateCustomView.as_view())
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

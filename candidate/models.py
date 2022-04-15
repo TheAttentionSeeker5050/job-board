@@ -46,3 +46,4 @@ class CVUpload(models.Model):
     default="CV")
     file = models.FileField(upload_to="media/uploads/")
     # file = models.FileField(upload_to="media/uploads/{}/".format(candidate.pk))
+
