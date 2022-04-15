@@ -42,10 +42,6 @@ class CreateCandidateProfileSerializer(serializers.ModelSerializer):
         candidate = super().create(validated_data)
         candidate.save()
         return candidate
-        # fields = ["email", "username", "first_names", "last_name"]
-        # validated_data = {f: validated_data.get(f) for f in fields}
-        # validated_data["password"] = make_password(validated_data("password"))
-        # return super(CreateCandidateProfileSerializer, self).create(validated_data)
 
 
     def update(self, instance, validated_data):

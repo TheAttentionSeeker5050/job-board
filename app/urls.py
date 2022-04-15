@@ -19,11 +19,13 @@ from rest_framework import routers
 import app.views as default_views
 
 from candidate.views import CandidateCustomView
+from company.views import CompanyViewset
 
 router = routers.DefaultRouter()
 router.register(r'users', default_views.UserViewSet)
 router.register(r'groups', default_views.GroupViewSet)
 router.register(r'candidate', CandidateCustomView, basename="candidate")
+router.register(r'company', CompanyViewset, basename="company")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
