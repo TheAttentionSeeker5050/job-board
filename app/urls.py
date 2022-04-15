@@ -30,8 +30,8 @@ from candidate.views import CandidateCustomView, FileUploadView, FileDetailView
 from company.views import CompanyViewset
 
 router = routers.DefaultRouter()
-router.register(r'users', default_views.UserViewSet)
-router.register(r'groups', default_views.GroupViewSet)
+# router.register(r'users', default_views.UserViewSet)
+# router.register(r'groups', default_views.GroupViewSet)
 router.register(r'candidate', CandidateCustomView, basename="candidate")
 router.register(r'company', CompanyViewset, basename="company")
 
