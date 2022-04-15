@@ -29,6 +29,14 @@ from django.conf.urls.static import static
 from candidate.views import CandidateCustomView, FileUploadView, FileDetailView
 from company.views import CompanyViewset
 
+
+# import authentication
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
+
 router = routers.DefaultRouter()
 router.register(r'users', default_views.UserViewSet)
 router.register(r'groups', default_views.GroupViewSet)
@@ -41,6 +49,9 @@ urlpatterns = [
     path('api/candidate-uploads/', FileUploadView.as_view()),
     path('api/candidate-details/<int:pk>/', FileDetailView.as_view()),
 
+    # authentication class
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # path("api/candidates/<int:pk>/", CandidateCustomView.as_view())
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

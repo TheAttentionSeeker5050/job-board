@@ -19,38 +19,38 @@ class CreateCandidateProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Candidate
-        fields = ("pk","email", "username", "password", "first_names", "last_name")
+        fields = ("pk", "user_id", "first_names", "last_name")
 
-    email = serializers.EmailField(
-        validators=[UniqueValidator(Candidate.objects.all())]
-        )
-    username = serializers.CharField(
-        min_length = 8,
-        max_length = 45,
-        allow_null = False,
-        allow_blank = False,
-        validators=[UniqueValidator(Candidate.objects.all())]
-        )
-    password = serializers.CharField(
-        write_only = True,
-        required = False,
-        style = {"input_type": "password", "placeholder": "Password"}
-    )
-
-
-    def create(self, validated_data):
-        validated_data["password"] = make_password(validated_data.get("password"))
-        candidate = super().create(validated_data)
-        candidate.save()
-        return candidate
+    # email = serializers.EmailField(
+    #     validators=[UniqueValidator(Candidate.objects.all())]
+    #     )
+    # username = serializers.CharField(
+    #     min_length = 8,
+    #     max_length = 45,
+    #     allow_null = False,
+    #     allow_blank = False,
+    #     validators=[UniqueValidator(Candidate.objects.all())]
+    #     )
+    # password = serializers.CharField(
+    #     write_only = True,
+    #     required = False,
+    #     style = {"input_type": "password", "placeholder": "Password"}
+    # )
 
 
-    def update(self, instance, validated_data):
-        fields = ["email", "username", "first_names", "last_name"]
-        data = {f: validated_data.get(f) for f in fields}
-        candidate = super().update(instance, data)
-        candidate.save()
-        return candidate
+    # def create(self, validated_data):
+    #     validated_data["password"] = make_password(validated_data.get("password"))
+    #     candidate = super().create(validated_data)
+    #     candidate.save()
+    #     return candidate
+
+
+    # def update(self, instance, validated_data):
+    #     fields = ["email", "username", "first_names", "last_name"]
+    #     data = {f: validated_data.get(f) for f in fields}
+    #     candidate = super().update(instance, data)
+    #     candidate.save()
+    #     return candidate
 
 
 
