@@ -18,7 +18,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
-import app.views as default_views
 
 # the media url imports
 from django.conf import settings
@@ -26,21 +25,41 @@ from django.conf.urls.static import static
 
 
 # import the views
-from candidate.views import CandidateCustomView, FileUploadView, FileDetailView
+from candidate.views import CandidateCustomView, FileUploadViewset
 from company.views import CompanyViewset
+import app.views as user_views
+
+
+# import authentication
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 
 router = routers.DefaultRouter()
-# router.register(r'users', default_views.UserViewSet)
+router.register(r'users', user_views.UserViewSet)
 # router.register(r'groups', default_views.GroupViewSet)
 router.register(r'candidate', CandidateCustomView, basename="candidate")
 router.register(r'company', CompanyViewset, basename="company")
+router.register(r'file-upload', FileUploadViewset, basename="file-upload")
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api/candidate-uploads/', FileUploadView.as_view()),
-    path('api/candidate-details/<int:pk>/', FileDetailView.as_view()),
 
-    # path("api/candidates/<int:pk>/", CandidateCustomView.as_view())
-    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    # custom views
+    
+
+    # register urls
+    path('api/register/', user_views.RegisterView.as_view()),
+    path('api/change-password/<int:pk>', user_views.ChangePasswordView.as_view()),
+
+
+    # authentication urls
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
