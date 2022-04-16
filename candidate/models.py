@@ -43,7 +43,7 @@ CV_CAT_CHOICES = [
 class CVUpload(models.Model):
 
 
-    candidate = models.ForeignKey(Candidate, models.SET_NULL, null=True)
+    candidate = models.ForeignKey(Candidate, models.CASCADE, null=True)
     file_category = models.CharField(max_length=25, 
     choices=CV_CAT_CHOICES,
     default="CV")

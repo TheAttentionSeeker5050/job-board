@@ -55,21 +55,30 @@ class CreateCandidateProfileSerializer(serializers.ModelSerializer):
 
 
 
+class FileUploadModelSerializer(serializers.ModelSerializer):
+    """
+        This serializer is in charge of serializing all the file upload requests valid on the ModelSerializer class 
+    """
+    class Meta:
+        model = CVUpload
+        fields = ["pk", "candidate", "file_category", "file"]
+        
 
 
 
-class FileUploadSerializer(serializers.Serializer):
-    # model = CVUpload
-    # fields = ["pk", "candidate", "file_category", "file"]
-    pk = serializers.IntegerField(read_only=True)
-    candidate = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    file_category = serializers.ChoiceField(choices=CV_CAT_CHOICES, default= "CV")
-    file = serializers.FileField(use_url=True)
-        # "media/uploads/", recursive=True)
 
-    def create(self, validated_data):
-        """
-            Create and return a new file upload instance
-        """
-        return CVUpload.objects.create(**validated_data)
+# class FileUploadSerializer(serializers.Serializer):
+#     # model = CVUpload
+#     # fields = ["pk", "candidate", "file_category", "file"]
+#     pk = serializers.IntegerField(read_only=True)
+#     candidate = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+#     file_category = serializers.ChoiceField(choices=CV_CAT_CHOICES, default= "CV")
+#     file = serializers.FileField(use_url=True)
+#         # "media/uploads/", recursive=True)
+
+#     def create(self, validated_data):
+#         """
+#             Create and return a new file upload instance
+#         """
+#         return CVUpload.objects.create(**validated_data)
 

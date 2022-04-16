@@ -20,6 +20,7 @@ Still on the making
 - Add user authentication classes
 - Add separate api viewsets for uploading files, changing password and checking file uploaded per candidate
 - Add permission classes
+- Change file upload api view to viewset
 
 ## Stuff I need to fix
 

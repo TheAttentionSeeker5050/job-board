@@ -26,7 +26,7 @@ from django.conf.urls.static import static
 
 
 # import the views
-from candidate.views import CandidateCustomView, FileUploadView, FileDetailView
+from candidate.views import CandidateCustomView, FileUploadViewset
 from company.views import CompanyViewset
 
 
@@ -42,12 +42,16 @@ router.register(r'users', default_views.UserViewSet)
 router.register(r'groups', default_views.GroupViewSet)
 router.register(r'candidate', CandidateCustomView, basename="candidate")
 router.register(r'company', CompanyViewset, basename="company")
+router.register(r'file-upload', FileUploadViewset, basename="file-upload")
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api/candidate-uploads/', FileUploadView.as_view()),
-    path('api/candidate-details/<int:pk>/', FileDetailView.as_view()),
+    path('api/register/', default_views.RegisterView.as_view()),
+    # path('api/candidate-uploads/', FileUploadView.as_view()),
+    # path('api/candidate-details/<int:pk>/', FileDetailView.as_view()),
 
     # authentication class
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
