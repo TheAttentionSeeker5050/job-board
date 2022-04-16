@@ -8,7 +8,6 @@ class Company(models.Model):
     user_id = models.ForeignKey(User, models.SET_NULL, null=True, blank=False)
     company_name = models.CharField(max_length=50, null=False, blank=False)
     company_email = models.EmailField(unique=True, null=False, default="")
-    # password = models.CharField(max_length=64, null=False, default="")
     company_summary = models.TextField(default="")
     company_address = models.CharField(max_length=100, null=False, blank=False)
 

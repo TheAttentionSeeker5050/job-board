@@ -1,10 +1,12 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
-from .serializers import UserSerializer, GroupSerializer, RegisterSerializer
+from .serializers import UserSerializer, RegisterSerializer, ChangePasswordSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import generics
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -24,10 +26,18 @@ class RegisterView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class GroupViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-    permission_classes = [permissions.IsAuthenticated]
+
+
+class ChangePasswordView(generics.UpdateAPIView):
+    """ Change password """
+    queryset = User.objects.all()
+    permission_classes = (IsAuthenticated,)
+    serializer_class = ChangePasswordSerializer
+
+# class GroupViewSet(viewsets.ModelViewSet):
+#     """
+#     API endpoint that allows groups to be viewed or edited.
+#     """
+#     queryset = Group.objects.all()
+#     serializer_class = GroupSerializer
+#     permission_classes = [permissions.IsAuthenticated]

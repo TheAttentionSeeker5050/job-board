@@ -4,7 +4,7 @@
 
 Still on the making
 
-## What this application is supposed to do on V1.0
+### What this application is supposed to do on V1.0
 
 - Browse blue collar jobs and apply to them
 - Post jobs as an employer
@@ -12,17 +12,23 @@ Still on the making
 - Upload your cv
 - Send your preffered cv to the company that holds the job post
 
-## Stuff I will be working on
+### Stuff already done or fixed
+
+- Add a candidate file uploads model
+- Add user authentication classes 
+- Add separate api viewsets for uploading files and changing password
+- Change file upload api view to viewset 
+
+
+
+### Stuff I will be working on
 
 - Fixing
-- Add a candidate file uploads model
 - Add a company model and django app functionality
-- Add user authentication classes
-- Add separate api viewsets for uploading files, changing password and checking file uploaded per candidate
+- Add separate api viewsets for checking file uploaded per candidate
 - Add permission classes
-- Change file upload api view to viewset
 
-## Stuff I need to fix
+### Stuff I need to fix
 
 - I should be able to change the account profile data without changing the password
 - 
