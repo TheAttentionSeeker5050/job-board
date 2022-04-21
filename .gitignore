@@ -137,6 +137,10 @@ venv.bak/
 .docx
 .doc
 
+# the media folder
+media/
+static/
+
 # Spyder project settings
 .spyderproject
 .spyproject
