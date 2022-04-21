@@ -6,7 +6,7 @@
 ## Version 1.0 - Work in progress
 
 This is a work in progress django app. 
-At it's finalization it will have a frontend react part and the backend django part in which I am working at this moment. This app is a job board for blue collar jobs. My father is a hard working fireman, who has worked hard to raise 1 son (me) and my 2 sisters. Even today, he gives a hand to his children. This is a living tribute to him. It is done with love and I expect to deploy it on heroku or google cloud soon as a personal project. 
+At it's finalization it will have a frontend react part and the backend django part in which I am working at this moment. This app is a job board for blue collar jobs. My father is a hard working fireman, who has worked hard to raise 1 son (me) and my 2 sisters. Even today, he gives a hand to his children and give powerful advice every now and then. This is a living tribute to him. It is done with love and I expect to deploy it on heroku or google cloud soon as a personal project. 
 
 ### Expected features
 
