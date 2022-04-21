@@ -14,22 +14,22 @@ class CompanySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Company
-        fields = ["id", "company_name", "company_email", "password", "company_summary", "company_address"]
+        fields = ["id", "user_id", "company_name", "company_email", "company_summary", "company_address"]
 
     company_email = serializers.EmailField(
         validators=[UniqueValidator(Company.objects.all())]
         )
 
-    password = serializers.CharField(
-        write_only = True,
-        required = True,
-        style = {"input_type": "password", "placeholder": "Password"}
-    )
+    # password = serializers.CharField(
+    #     write_only = True,
+    #     required = True,
+    #     style = {"input_type": "password", "placeholder": "Password"}
+    # )
 
-    def create(self, validated_data):
-        validated_data["password"] = make_password(validated_data.get("password"))
-        company = super().create(validated_data)
-        company.save()
-        return company
+    # def create(self, validated_data):
+    #     validated_data["password"] = make_password(validated_data.get("password"))
+    #     company = super().create(validated_data)
+    #     company.save()
+    #     return company
 
     

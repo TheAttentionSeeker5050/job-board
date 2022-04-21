@@ -3,10 +3,23 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 
+from candidate.models import Candidate
+from company.models import Company
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['url', 'username', 'email', "first_name", "last_name"]
+
+    def create(self, validated_data):
+        """ Create a new user """
+
+        # we need to create corresponding candidate and company instances at some point, but we will leave it undone there for now
+
+
+        return User.objects.create(**validated_data)
+
+    
 
 
 class RegisterSerializer(serializers.ModelSerializer):

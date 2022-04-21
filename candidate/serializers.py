@@ -19,7 +19,7 @@ class CreateCandidateProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Candidate
-        fields = ("pk", "user_id", "first_names", "last_name")
+        fields = ("pk", "user_id", "city_of_residence", "state_province", "country")
 
  
 
@@ -30,7 +30,7 @@ class FileUploadModelSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = CVUpload
-        fields = ["pk", "candidate", "file_category", "file"]
+        fields = ["pk", "user_id", "file_category", "file"]
 
 
 

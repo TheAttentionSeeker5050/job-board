@@ -5,11 +5,11 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Company(models.Model):
-    user_id = models.ForeignKey(User, models.SET_NULL, null=True, blank=False)
-    company_name = models.CharField(max_length=50, null=False, blank=False)
+    user_id = models.ForeignKey(User, models.SET_NULL, null=True, default="")
+    company_name = models.CharField(max_length=50, null=False, default="")
     company_email = models.EmailField(unique=True, null=False, default="")
     company_summary = models.TextField(default="")
-    company_address = models.CharField(max_length=100, null=False, blank=False)
+    company_address = models.CharField(max_length=100, null=False, blank=False, default="")
 
     def __str__(self) -> str:
         return self.company_name

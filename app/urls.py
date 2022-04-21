@@ -45,7 +45,6 @@ router.register(r'company', CompanyViewset, basename="company")
 router.register(r'file-upload', FileUploadViewset, basename="file-upload")
 
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),

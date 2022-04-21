@@ -6,7 +6,7 @@ from company.models import Company
 from rest_framework.viewsets import ModelViewSet
 
 from company.serializers import CompanySerializer
-
+from app.permissions import UserIsLoggedIn
 
 # Create your views here.
 # Create your views here.
@@ -16,3 +16,6 @@ class CompanyViewset(ModelViewSet):
     """
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
+    # permission_classes = [UserIsLoggedIn,]
+
+    

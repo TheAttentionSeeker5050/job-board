@@ -29,16 +29,10 @@ class RegisterView(APIView):
 
 
 
+
 class ChangePasswordView(generics.UpdateAPIView):
     """ Change password """
     queryset = User.objects.all()
     permission_classes = (IsAuthenticated,)
     serializer_class = ChangePasswordSerializer
 
-# class GroupViewSet(viewsets.ModelViewSet):
-#     """
-#     API endpoint that allows groups to be viewed or edited.
-#     """
-#     queryset = Group.objects.all()
-#     serializer_class = GroupSerializer
-#     permission_classes = [permissions.IsAuthenticated]
