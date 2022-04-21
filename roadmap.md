@@ -18,17 +18,22 @@ Still on the making
 - Add user authentication classes 
 - Add separate api viewsets for uploading files and changing password
 - Change file upload api view to viewset 
+- Add a company model and django app functionality
+- Add separate api viewsets for checking files uploaded per candidate
+- Add permission classes --> Added a user is loggen in class, for checking if the user in the session is the owner of the profile
 
 
 
 ### Stuff I will be working on
 
 - Fixing
-- Add a company model and django app functionality
-- Add separate api viewsets for checking file uploaded per candidate
-- Add permission classes
+- Testing
+- Work on the jopost api
+- A custom search tooñ for candidates and jobposts
 
 ### Stuff I need to fix
 
 - I should be able to change the account profile data without changing the password
-- 
+- The media folder should not contain its own folder name, like media/media/uploaded
+- I should include tests
+
