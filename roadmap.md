@@ -29,7 +29,7 @@ Still on the making
 - Fixing
 - Testing
 - Work on the jopost api
-- A custom search tooñ for candidates and jobposts
+- A custom search tool for candidates and jobposts
 
 ### Stuff I need to fix
 
