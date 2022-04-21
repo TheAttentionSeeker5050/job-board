@@ -30,6 +30,11 @@ Still on the making
 - Testing
 - Work on the jopost api
 - A custom search tool for candidates and jobposts
+- An api call that lets you choose the file you're going to submit to the jobpost
+
+### Stuff to be considered in the future
+- Having multiple candidate profiles per user, like accomodating the profile to the job-post
+- A spanish and english version of the profile
 
 ### Stuff I need to fix
 

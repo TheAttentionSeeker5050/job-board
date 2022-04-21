@@ -28,7 +28,7 @@ from django.conf.urls.static import static
 from candidate.views import CandidateCustomView, FileUploadViewset
 from company.views import CompanyViewset
 import app.views as user_views
-
+from jobpost.views import OwnerJobPostViewset, NonOwnerJobPostViewset
 
 # import authentication
 from rest_framework_simplejwt.views import (
@@ -37,17 +37,26 @@ from rest_framework_simplejwt.views import (
 )
 
 
+
+
 router = routers.DefaultRouter()
 router.register(r'users', user_views.UserViewSet)
-# router.register(r'groups', default_views.GroupViewSet)
 router.register(r'candidate', CandidateCustomView, basename="candidate")
 router.register(r'company', CompanyViewset, basename="company")
 router.register(r'file-upload', FileUploadViewset, basename="file-upload")
+router.register(r'employer-posts', OwnerJobPostViewset, basename="employer-posts")
+router.register(r'browse-jobposts', NonOwnerJobPostViewset, basename="browse-jobposts")
+
+
+
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    # path('api/jobposts/', include("jobpost.urls")),
+
 
     # custom views
     

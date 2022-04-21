@@ -10,3 +10,10 @@ class UserIsLoggedIn(BasePermission):
         if request.user.is_authenticated:
             return obj.user_id == request.user
         return False
+
+class IsJobPostOwner(BasePermission):
+    """This permission allows us to modify the jobposts only if the user owns the jobpost"""
+    def has_object_permission(self, request, view, obj):
+        if request.user.is_authenticated:
+            return obj.employer_id == request.user
+        return False
