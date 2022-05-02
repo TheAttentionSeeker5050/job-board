@@ -29,6 +29,7 @@ Still on the making
 - Fixing
 - Testing
 - Work on the jopost api
+- Make post job api functionality
 - A custom search tool for candidates and jobposts
 - An api call that lets you choose the file you're going to submit to the jobpost
 

@@ -30,6 +30,9 @@ class Candidate(models.Model):
         "institution": ""
     })
 
+    def __str__(self):
+        return self.user_id.first_name + " " +  self.user_id.last_name
+
 
 
 CV_CAT_CHOICES = [
@@ -45,5 +48,4 @@ class CVUpload(models.Model):
     choices=CV_CAT_CHOICES,
     default="CV")
     file = models.FileField(upload_to="media/uploads/")
-    # file = models.FileField(upload_to="media/uploads/{}/".format(candidate.pk))
 

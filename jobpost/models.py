@@ -1,9 +1,11 @@
 from argparse import ONE_OR_MORE
+
 from django.db import models
 
 # import the user model which we will use later
 from django.contrib.auth.models import User
 from company.models import Company
+from candidate.models import Candidate
 
 CERT_CHOICES = [
     ("", ""),
@@ -25,4 +27,10 @@ class JobPost(models.Model):
     certification_required = models.CharField(default="", choices=CERT_CHOICES, max_length=100)
 
 
-    
+class JobCandidateApply(models.Model):
+    candidate_user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False) # this is different from the next attribute, maybe in the future we may need a user key
+    candidate_id = models.ForeignKey(Candidate, on_delete=models.CASCADE, null=False, blank=False)
+    employer_id = models.ForeignKey(Company, on_delete=models.CASCADE, null=False, blank=False)
+    uploaded_file_address = models.CharField(max_length=500)
+
+
