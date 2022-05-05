@@ -14,10 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+
 # import external libs
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
+
 
 # the media url imports
 from django.conf import settings
@@ -25,18 +27,17 @@ from django.conf.urls.static import static
 
 
 # import the views
-from candidate.views import CandidateCustomView, FileUploadViewset
-from company.views import CompanyViewset
+from candidate.views import CandidateCustomView, FileUploadViewset, CandidateBrowseView, CandidateRetrieveView
+from company.views import CompanyViewset, CompanyBrowseView, CompanyRetrieveView
 import app.views as user_views
 from jobpost.views import OwnerJobPostViewset, NonOwnerJobPostViewset
+
 
 # import authentication
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-
-
 
 
 router = routers.DefaultRouter()
@@ -49,17 +50,17 @@ router.register(r'browse-jobposts', NonOwnerJobPostViewset, basename="browse-job
 
 
 
-
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    # path('api/jobposts/', include("jobpost.urls")),
 
+    # retrieve and list candidates as another user
+    path("api/browse/candidates/", CandidateBrowseView.as_view()),
+    path("api/browse/candidates/<int:pk>", CandidateRetrieveView.as_view()),
 
-    # custom views
-    
+    # retrieve and list companies as another user
+    path("api/browse/companies/", CompanyBrowseView.as_view()),
+    path("api/browse/companies/<int:pk>", CompanyRetrieveView.as_view()),
 
     # register urls
     path('api/register/', user_views.RegisterView.as_view()),

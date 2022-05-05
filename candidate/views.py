@@ -7,6 +7,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from candidate.models import Candidate, CVUpload
 from rest_framework.viewsets import ModelViewSet, ViewSet
+from rest_framework import generics
 
 
 
@@ -21,6 +22,7 @@ from rest_framework.decorators import action
 
 # permissions
 from app.permissions import UserIsLoggedIn
+from rest_framework.permissions import IsAuthenticated
 
 
 # Create your views here.
@@ -49,3 +51,18 @@ class FileUploadViewset(ModelViewSet):
         return Response(serializer.data)
 
 
+class CandidateBrowseView(generics.ListAPIView):
+    """For listing the candidates, allows filters"""
+
+
+    queryset = Candidate.objects.all()
+    permission_classes = [IsAuthenticated,]
+    serializer_class = CreateCandidateProfileSerializer
+
+class CandidateRetrieveView(generics.RetrieveAPIView):
+    """For retrieving candidates"""
+    
+
+    queryset = Candidate.objects.all()
+    permission_classes = [IsAuthenticated,]
+    serializer_class = CreateCandidateProfileSerializer

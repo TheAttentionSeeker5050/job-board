@@ -8,5 +8,6 @@ from jobpost.models import JobPost
 """
 
 class JobPostSerializer(serializers.ModelSerializer):
-    model = JobPost
-    fields = ["pk", "employer_id", "job_position", "job_description", "hourly_salary", "years_of_experience_required", "certification_required"]
+    class Meta:
+        model = JobPost
+        fields = ["pk", "employer_id", "employer_name", "job_position", "job_description", "hourly_salary", "years_of_experience_required", "certification_required"]

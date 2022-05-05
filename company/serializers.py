@@ -14,11 +14,14 @@ class CompanySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Company
-        fields = ["id", "user_id", "company_name", "company_email", "company_summary", "company_address"]
+        fields = ["id", "user_id", "company_name", "company_summary", "company_address"]
 
     company_email = serializers.EmailField(
         validators=[UniqueValidator(Company.objects.all())]
         )
+
+
+
 
     # password = serializers.CharField(
     #     write_only = True,

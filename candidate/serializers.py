@@ -33,4 +33,3 @@ class FileUploadModelSerializer(serializers.ModelSerializer):
         fields = ["pk", "user_id", "file_category", "file"]
 
 
-
