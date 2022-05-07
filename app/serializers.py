@@ -6,6 +6,8 @@ from django.contrib.auth.password_validation import validate_password
 from candidate.models import Candidate
 from company.models import Company
 
+
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

@@ -8,18 +8,25 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics
 
+
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+
+
+
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
 
 class RegisterView(APIView):
     """ Creates a new user """
-
+    permission_classes = [permissions.AllowAny,]
     def post(self, request, format=None):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
@@ -33,6 +40,6 @@ class RegisterView(APIView):
 class ChangePasswordView(generics.UpdateAPIView):
     """ Change password """
     queryset = User.objects.all()
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     serializer_class = ChangePasswordSerializer
 
